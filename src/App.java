@@ -12,7 +12,7 @@ public class App
         {
             a = 0;
         }
-        
+
         final int blancos = ancho - a;
 
         o.pr(".", blancos);
@@ -41,12 +41,16 @@ public class App
     private static void mover(final int desde, final int hasta, final HanoiTowers h)
     {
         o.p("Movimiento desde la torre " + desde + " hasta la " + hasta);
+        /*
         if(h.legalMove(desde, hasta))
         {
             o.pca("Movimiento legal");
         } else {
             o.pct("Movimiento ilegal");
         }
+        */
+        //o.p("Movimiento legal", "Movimiento ilegal", h.legalMove(desde, hasta));
+        o.oIfElse(()->o.pca("Movimiento legal"), ()->o.pct("Movimiento ilegal"), h.legalMove(desde, hasta));
 
         o.p("Tamaño anillo movido: " + h.move(desde, hasta));
         o.p(h.makeTowers());
@@ -57,6 +61,7 @@ public class App
         o.bhr();
 
         var h = new HanoiTowers(7,6);
+        var data = new byte[][]{{0,1},{0,1},{0,2},  {1,2},{1,2},{0,4},{1,3},};
         /*
         h.printMatrix();
         /*
@@ -70,6 +75,14 @@ public class App
         final int tw = 1;
         o.p("Top tower " + tw + ": " + h.topTower(tw));
         o.hr();
+
+
+        for (byte[] is : data) 
+        {
+            mover(is[0], is[1], h);
+            o.hr();
+        }
+        /*
         mover(0, 1, h);
         o.hr();
         mover(0, 1, h);
@@ -84,7 +97,7 @@ public class App
         o.hr();
         mover(1, 3, h);
         o.hr();
-
+        */
         /*
         o.hr();
         String[] ss = {"Hola", "Holaa", "Holaaa"};

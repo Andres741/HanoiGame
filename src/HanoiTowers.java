@@ -8,6 +8,12 @@ public class HanoiTowers
     public final int towers;
     public StringBuilder[] constLineas;
 
+    /**
+     * Constructor con el que se puede especificar el número de torres y pisos por separado.
+     * 
+     * @param h Cantidad de pisos
+     * @param t Cantidad de torres
+     */
     public HanoiTowers(final int h, final int t)
     {
         higth = h;
@@ -35,14 +41,20 @@ public class HanoiTowers
             }
         }
     }
-    public HanoiTowers(final int h)
+
+    /**
+     * Constructor que crea torres en mismo número que de pisos.
+     * 
+     * @param dimensiones Cantidad de torres y pisos en las mismas.
+     */
+    public HanoiTowers(final int dimensiones)
     {
-        higth = h;
+        higth = dimensiones;
         towers = 3;
         with = higth + 1;
 
         matrix = new int[higth][towers];
-        constLineas = new StringBuilder[h];
+        constLineas = new StringBuilder[dimensiones];
         reiniciarLineas();
 
         int [] linea;
@@ -62,6 +74,10 @@ public class HanoiTowers
             }
         }
     }
+
+    /**
+     * Constructor por defecto que configura las torres para ser tres torres de tres pisos.
+     */
     public HanoiTowers()
     {
         higth = 3;
@@ -90,6 +106,7 @@ public class HanoiTowers
         }
     }
     /**
+     * Crea un segmento de una torre, por ejemplo '.000|000.' o '...0|0...'
      * 
      * @param a: ancho anillos
      */
@@ -117,6 +134,7 @@ public class HanoiTowers
     } //:)
 
     /**
+     * Crea una línea de las torres de Hanoi.
      * 
      * @param a linea a realizar
      */
@@ -130,6 +148,9 @@ public class HanoiTowers
         }
     }
 
+    /**
+     * Deshace las torres de Hanoi.
+     */
     private void reiniciarLineas()
     {
         for (int k = 0; k < constLineas.length; k++)
@@ -138,6 +159,12 @@ public class HanoiTowers
         }
     }
 
+    /**
+     * Crea un array de Strings con los pisos de las tores de Hanoi, asi que si se imprimen en orden en<br/>
+     * consola se mostrarán las torres.
+     * 
+     * @return Las líneas de los pisos de las torres de Hanoi
+     */
     public String[] makeTowers()
     {
         String[] res = new String[matrix.length];
@@ -250,7 +277,8 @@ public class HanoiTowers
     {
         if(topTower(desde) == 0 ) return false;
         if(topTower(hasta) == 0 ) return true;
-        return (topTower(desde)+1) == (topTower(hasta));
+        //return (topTower(desde)) == (topTower(hasta)-1);
+        return (topTower(desde)) < (topTower(hasta));
     }
 
     public boolean gameFinish()

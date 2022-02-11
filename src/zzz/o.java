@@ -19,16 +19,16 @@ public class o
 	
     public static final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-	public static void p(Object o)
+	public static void p(final Object o)
 	{
 		System.out.println(o);
 	}
     
-    public static void p(Object o0, Object o1, boolean con)
+    public static void p(final Object o0, final Object o1, final boolean con)
 	{
-        oIf( ()->p(o0) , ()->p(o1) , con);
+        oIfElse( ()->p(o0) , ()->p(o1) , con);
 	}
-	public static void p(Object[] o)
+	public static void p(final Object[] o)
 	{
         for (var a : o) 
         {
@@ -156,7 +156,7 @@ public class o
         
         if (!sc.hasNextInt())
         {
-            p("No se ha encontrado el n�mero, vuelva a escribirlo:");
+            p("No se ha encontrado el número, vuelva a escribirlo:");
             return inInt(min, pregunta, max);
         }
         res = sc.nextInt();
@@ -248,7 +248,7 @@ public class o
         }
     }
 
-    public static void oIf(final Runnable r0, final Runnable r1, final boolean con) 
+    public static void oIfElse(final Runnable r0, final Runnable r1, final boolean con) 
     {
         if (con) {
             r0.run();
