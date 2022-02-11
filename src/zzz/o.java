@@ -23,6 +23,11 @@ public class o
 	{
 		System.out.println(o);
 	}
+    
+    public static void p(Object o0, Object o1, boolean con)
+	{
+        oIf( ()->p(o0) , ()->p(o1) , con);
+	}
 	public static void p(Object[] o)
 	{
         for (var a : o) 
@@ -240,6 +245,15 @@ public class o
         for(int k = 0; k < reps; k++)
         {
             r[k%r.length].run();
+        }
+    }
+
+    public static void oIf(final Runnable r0, final Runnable r1, final boolean con) 
+    {
+        if (con) {
+            r0.run();
+        } else {
+            r1.run();
         }
     }
 
